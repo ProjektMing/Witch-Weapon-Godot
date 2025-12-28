@@ -10,8 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b8686g535glnv" path="res://assets/gui/settings/不死扶苏233.webp" id="11_fusu"]
 [ext_resource type="Texture2D" uid="uid://488lsr0s1sa6" path="res://assets/gui/settings/樱天澈.webp" id="12_sakura"]
 [ext_resource type="Texture2D" uid="uid://5xfq5tpgqce" path="res://assets/gui/settings/雪凌殇.webp" id="13_snow"]
-[ext_resource type="Texture2D" uid="uid://xwe32ewvyo81" path="res://assets/gui/settings/ageace.webp" id="14_age"]
-[ext_resource type="Texture2D" uid="uid://coc6ap2fff287" path="res://assets/gui/settings/见习食神懒羊羊.webp" id="15_lazy"]
+[ext_resource type="Texture2D" uid="uid://coc6ap2fff287" path="res://assets/gui/settings/见习食神懒羊羊.webp" id="14_lazy"]
 [ext_resource type="Shader" uid="uid://dade0aiy7255o" path="res://scripts/shader/circle_avatar.gdshader" id="16_circle_shader"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_avatar_shadow"]
@@ -428,46 +427,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("14_age")
+texture_normal = ExtResource("14_lazy")
 stretch_mode = 5
 
 [node name="Name" type="Label" parent="MainPanel/ContentArea/ThanksContent/VBoxContainer/ThanksGrid/Thanks3"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
-theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 18
-text = "ageace"
-horizontal_alignment = 1
-
-[node name="Thanks4" type="VBoxContainer" parent="MainPanel/ContentArea/ThanksContent/VBoxContainer/ThanksGrid"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="AvatarContainer" type="Control" parent="MainPanel/ContentArea/ThanksContent/VBoxContainer/ThanksGrid/Thanks4"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-
-[node name="Shadow" type="Panel" parent="MainPanel/ContentArea/ThanksContent/VBoxContainer/ThanksGrid/Thanks4/AvatarContainer"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_avatar_shadow")
-
-[node name="AvatarButton" type="TextureButton" parent="MainPanel/ContentArea/ThanksContent/VBoxContainer/ThanksGrid/Thanks4/AvatarContainer"]
-material = SubResource("ShaderMaterial_circle")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture_normal = ExtResource("15_lazy")
-stretch_mode = 5
-
-[node name="Name" type="Label" parent="MainPanel/ContentArea/ThanksContent/VBoxContainer/ThanksGrid/Thanks4"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
 theme_override_fonts/font = ExtResource("2_font")
@@ -536,12 +499,9 @@ texture_pressed = ExtResource("4_back_click")
 [connection signal="mouse_entered" from="MainPanel/ContentArea/ThanksContent/VBoxContainer/ThanksGrid/Thanks2/AvatarContainer/AvatarButton" to="." method="_on_avatar_snow_entered"]
 [connection signal="mouse_exited" from="MainPanel/ContentArea/ThanksContent/VBoxContainer/ThanksGrid/Thanks2/AvatarContainer/AvatarButton" to="." method="_on_avatar_snow_exited"]
 [connection signal="pressed" from="MainPanel/ContentArea/ThanksContent/VBoxContainer/ThanksGrid/Thanks2/AvatarContainer/AvatarButton" to="." method="_on_thanks_snow_pressed"]
-[connection signal="mouse_entered" from="MainPanel/ContentArea/ThanksContent/VBoxContainer/ThanksGrid/Thanks3/AvatarContainer/AvatarButton" to="." method="_on_avatar_age_entered"]
-[connection signal="mouse_exited" from="MainPanel/ContentArea/ThanksContent/VBoxContainer/ThanksGrid/Thanks3/AvatarContainer/AvatarButton" to="." method="_on_avatar_age_exited"]
-[connection signal="pressed" from="MainPanel/ContentArea/ThanksContent/VBoxContainer/ThanksGrid/Thanks3/AvatarContainer/AvatarButton" to="." method="_on_thanks_age_pressed"]
-[connection signal="mouse_entered" from="MainPanel/ContentArea/ThanksContent/VBoxContainer/ThanksGrid/Thanks4/AvatarContainer/AvatarButton" to="." method="_on_avatar_lazy_entered"]
-[connection signal="mouse_exited" from="MainPanel/ContentArea/ThanksContent/VBoxContainer/ThanksGrid/Thanks4/AvatarContainer/AvatarButton" to="." method="_on_avatar_lazy_exited"]
-[connection signal="pressed" from="MainPanel/ContentArea/ThanksContent/VBoxContainer/ThanksGrid/Thanks4/AvatarContainer/AvatarButton" to="." method="_on_thanks_lazy_pressed"]
+[connection signal="mouse_entered" from="MainPanel/ContentArea/ThanksContent/VBoxContainer/ThanksGrid/Thanks3/AvatarContainer/AvatarButton" to="." method="_on_avatar_lazy_entered"]
+[connection signal="mouse_exited" from="MainPanel/ContentArea/ThanksContent/VBoxContainer/ThanksGrid/Thanks3/AvatarContainer/AvatarButton" to="." method="_on_avatar_lazy_exited"]
+[connection signal="pressed" from="MainPanel/ContentArea/ThanksContent/VBoxContainer/ThanksGrid/Thanks3/AvatarContainer/AvatarButton" to="." method="_on_thanks_lazy_pressed"]
 [connection signal="pressed" from="MainPanel/SidePanel/VBoxContainer/SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="MainPanel/SidePanel/VBoxContainer/ThanksButton" to="." method="_on_thanks_button_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

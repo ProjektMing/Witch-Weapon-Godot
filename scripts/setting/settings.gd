@@ -48,7 +48,6 @@ var bilibili_urls = {
 	"fusu": "https://space.bilibili.com/364706064",  # 不死扶苏233的B站主页
 	"sakura": "https://space.bilibili.com/28626",  # 樱天澈的B站主页
 	"snow": "https://space.bilibili.com/6105216",  # 雪凌殇的B站主页
-	"age": "https://space.bilibili.com/4054032",  # ageace的B站主页
 	"lazy": "https://space.bilibili.com/274983449"  # 见习食神懒羊羊的B站主页
 }
 
@@ -392,9 +391,6 @@ func _on_thanks_sakura_pressed():
 func _on_thanks_snow_pressed():
 	_open_bilibili_url(bilibili_urls["snow"])
 
-func _on_thanks_age_pressed():
-	_open_bilibili_url(bilibili_urls["age"])
-
 func _on_thanks_lazy_pressed():
 	_open_bilibili_url(bilibili_urls["lazy"])
 
@@ -462,20 +458,12 @@ func _on_avatar_snow_exited():
 	var container = $MainPanel/ContentArea/ThanksContent/VBoxContainer/ThanksGrid/Thanks2/AvatarContainer
 	_float_avatar_down(container)
 
-func _on_avatar_age_entered():
-	var container = $MainPanel/ContentArea/ThanksContent/VBoxContainer/ThanksGrid/Thanks3/AvatarContainer
-	_float_avatar_up(container)
-
-func _on_avatar_age_exited():
-	var container = $MainPanel/ContentArea/ThanksContent/VBoxContainer/ThanksGrid/Thanks3/AvatarContainer
-	_float_avatar_down(container)
-
 func _on_avatar_lazy_entered():
-	var container = $MainPanel/ContentArea/ThanksContent/VBoxContainer/ThanksGrid/Thanks4/AvatarContainer
+	var container = $MainPanel/ContentArea/ThanksContent/VBoxContainer/ThanksGrid/Thanks3/AvatarContainer
 	_float_avatar_up(container)
 
 func _on_avatar_lazy_exited():
-	var container = $MainPanel/ContentArea/ThanksContent/VBoxContainer/ThanksGrid/Thanks4/AvatarContainer
+	var container = $MainPanel/ContentArea/ThanksContent/VBoxContainer/ThanksGrid/Thanks3/AvatarContainer
 	_float_avatar_down(container)
 
 # 显示设置界面（带淡入动画）
