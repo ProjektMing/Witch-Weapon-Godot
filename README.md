@@ -81,7 +81,7 @@ cd Witch-Weapon-Godot-
 
 ## 📖 开发计划
 
-- [ ] 设置功能
+- [x] 设置功能
 - [ ] 音乐鉴赏
 - [ ] 魔女人物图鉴
 - [ ] Mod 支持
@@ -126,50 +126,49 @@ cd Witch-Weapon-Godot-
 
 <table>
 <tr>
-<td align="center" width="20%">
+<td align="center" width="33.33%">
 <a href="https://space.bilibili.com/28626">
 <img src="https://i0.hdslb.com/bfs/face/db69c5b3e23454a366ec340e577bf58e480ec62a.jpg@160w_160h_1c_1s.webp" width="100px;" alt="樱天澈"/>
 <br />
 <sub><b>樱天澈</b></sub>
 </a>
-<br />
-<sub>剧情原作</sub>
 </td>
-<td align="center" width="20%">
+<td align="center" width="33.33%">
 <a href="https://space.bilibili.com/364706064">
 <img src="https://i0.hdslb.com/bfs/face/ba517bc898138b931678327a8be9c39085de7d4a.jpg@96w_96h_1c_1s_!web-avatar.avif" width="100px;" alt="不死扶苏233"/>
 <br />
 <sub><b>不死扶苏233</b></sub>
 </a>
-<br />
-<sub>测试、部分脚本编写</sub>
 </td>
-<td align="center" width="20%">
+<td align="center" width="33.33%">
 <a href="https://space.bilibili.com/3546683193428662">
 <img src="https://i1.hdslb.com/bfs/face/cff2b11ae8495ab602153e4ada205f6ee7f5486f.jpg" width="100px;" alt="ageace"/>
 <br />
 <sub><b>白烛Official</b></sub>
 </a>
-<br />
-<sub>提供多语言本地化文本</sub>
 </td>
-<td align="center" width="20%">
+</tr>
+<tr>
+<td align="center" width="33.33%">
 <a href="https://space.bilibili.com/6105216">
 <img src="https://i0.hdslb.com/bfs/face/c1dc5df20b8d83a29af0d1251dddc20c00863752.jpg@128w_128h_1c_1s.webp" width="100px;" alt="雪凌殇"/>
 <br />
 <sub><b>雪凌殇</b></sub>
 </a>
-<br />
-<sub>视频录制协助游戏恢复</sub>
 </td>
-<td align="center" width="20%">
+<td align="center" width="33.33%">
 <a href="https://space.bilibili.com/274983449">
 <img src="https://i0.hdslb.com/bfs/face/3328cd30de04b8f024145d3fc57a4386c6d7ed13.jpg@96w_96h_1c_1s_!web-avatar.avif" width="100px;" alt="见习食神懒羊羊"/>
 <br />
 <sub><b>见习食神懒羊羊</b></sub>
 </a>
+</td>
+<td align="center" width="33.33%">
+<a href="https://github.com/ProjektMing">
+<img src="https://avatars.githubusercontent.com/u/73031259?v=4" width="100px;" alt="ProjektMing"/>
 <br />
-<sub>视频更新协助文本校验</sub>
+<sub><b>ProjektMing</b></sub>
+</a>
 </td>
 </tr>
 </table>
