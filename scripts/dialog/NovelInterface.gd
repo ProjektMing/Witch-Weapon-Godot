@@ -3320,23 +3320,10 @@ func _on_name_confirm_pressed() -> void:
 
 func _save_player_name_to_config(player_name_value: String) -> void:
 	"""保存玩家姓名到配置文件"""
-	var config = ConfigFile.new()
-	var config_path = "user://game_config.cfg"
-
-	# 尝试加载现有配置
-	var err = config.load(config_path)
-	if err != OK and err != ERR_FILE_NOT_FOUND:
-		push_warning("加载配置文件失败: ", err)
-
-	# 设置玩家姓名
-	config.set_value("player", "name", player_name_value)
-
-	# 保存配置
-	err = config.save(config_path)
-	if err == OK:
-		print("玩家姓名已保存到配置: ", player_name_value)
-	else:
-		push_error("保存配置文件失败: ", err)
+	# 使用 GameConfig 单例更新玩家名字
+	GameConfig.player_name = player_name_value
+	GameConfig.save()
+	print("玩家姓名已保存到配置: ", player_name_value)
 
 func _shake_error_label() -> void:
 	"""晃动错误提示文字"""

@@ -11,7 +11,6 @@ func play_script():
 	pass
 
 func chapter3_ep03_script():
-	var player_name = GameConfig.player_name
 	novel_interface.change_music("res://assets/audio/music/Hard Stage.mp3")
 	novel_interface.change_background("res://assets/images/bg/SID/opsRoom.png")
 	novel_interface.show_character("ren_battle","upset")
@@ -46,7 +45,7 @@ func chapter3_ep03_script():
 	novel_interface.character_2nd_move_right(0)
 	await novel_interface.show_dialog("一群与嫌疑人面部重合度极高的伪造目标，他们就算搜寻到世界毁灭也不可能真的找到那些人。", "莉琉")
 	novel_interface.change_2nd_expression("normal2")
-	await novel_interface.show_dialog("而除了我们以外，在其他人看来，那些人和"+player_name+"一样，都是离奇消失的失踪人口罢了。", "莉琉")
+	await novel_interface.show_dialog("而除了我们以外，在其他人看来，那些人和"+GameConfig.player_name+"一样，都是离奇消失的失踪人口罢了。", "莉琉")
 	novel_interface.change_2nd_expression("speak2")
 	await novel_interface.show_dialog("这样要怎样才能分辨出，谁才是真正的目标呢？", "莉琉")
 	await novel_interface.show_dialog("让桌上的米粒消失有两种办法，要么一粒粒的把米拿走，要么就在桌面上撒一整袋同样品种的米。", "莉琉")
