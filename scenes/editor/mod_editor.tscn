@@ -447,6 +447,7 @@ size_flags_vertical = 3
 [node name="对话" type="ScrollContainer" parent="MainContainer/CenterPanel/ToolboxPanel/ToolboxContainer/ToolboxTabs"]
 layout_mode = 2
 horizontal_scroll_mode = 0
+clip_contents = true
 metadata/_tab_index = 0
 
 [node name="DialogBlocksContainer" type="VBoxContainer" parent="MainContainer/CenterPanel/ToolboxPanel/ToolboxContainer/ToolboxTabs/对话"]
@@ -458,6 +459,7 @@ theme_override_constants/separation = 5
 visible = false
 layout_mode = 2
 horizontal_scroll_mode = 0
+clip_contents = true
 metadata/_tab_index = 1
 
 [node name="CharacterBlocksContainer" type="VBoxContainer" parent="MainContainer/CenterPanel/ToolboxPanel/ToolboxContainer/ToolboxTabs/角色"]
@@ -469,6 +471,7 @@ theme_override_constants/separation = 5
 visible = false
 layout_mode = 2
 horizontal_scroll_mode = 0
+clip_contents = true
 metadata/_tab_index = 2
 
 [node name="SceneBlocksContainer" type="VBoxContainer" parent="MainContainer/CenterPanel/ToolboxPanel/ToolboxContainer/ToolboxTabs/场景"]
@@ -480,6 +483,7 @@ theme_override_constants/separation = 5
 visible = false
 layout_mode = 2
 horizontal_scroll_mode = 0
+clip_contents = true
 metadata/_tab_index = 3
 
 [node name="MusicBlocksContainer" type="VBoxContainer" parent="MainContainer/CenterPanel/ToolboxPanel/ToolboxContainer/ToolboxTabs/音乐"]
@@ -491,6 +495,7 @@ theme_override_constants/separation = 5
 visible = false
 layout_mode = 2
 horizontal_scroll_mode = 0
+clip_contents = true
 metadata/_tab_index = 4
 
 [node name="ControlBlocksContainer" type="VBoxContainer" parent="MainContainer/CenterPanel/ToolboxPanel/ToolboxContainer/ToolboxTabs/控制"]

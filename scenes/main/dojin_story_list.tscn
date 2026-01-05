@@ -45,3 +45,11 @@ offset_top = 640.0
 offset_right = 200.0
 offset_bottom = 690.0
 text = "打开编辑器"
+
+[node name="ManageModsButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 640.0
+offset_right = 370.0
+offset_bottom = 690.0
+text = "管理模组"

@@ -40,6 +40,7 @@ extends Control
 @onready var background_color: ColorRect = $"BackgroundColor"
 @onready var back_area: Control = $"BackgroundColor/BackArea"
 @onready var editor_button: Button = $"EditorButton"
+@onready var manage_mods_button: Button = get_node_or_null("ManageModsButton") as Button
 
 # ==================== 常量配置 ====================
 # Mod文件夹路径（相对于游戏根目录）
@@ -51,6 +52,7 @@ const MOD_PROJECTS_PATH: String = "user://mod_projects"  # mod工程文件夹
 # 剧集列表场景的文件路径
 const EPISODE_LIST_SCENE_PATH: String = "res://scenes/main/episode_story_list.tscn"
 const PROJECT_MANAGER_SCENE_PATH: String = "res://scenes/editor/project_manager.tscn"  # 工程管理器场景
+const MOD_MANAGER_SCENE_PATH: String = "res://scenes/main/mod_manager.tscn"  # 模组管理器场景
 
 # 故事节点间距
 const STORY_SPACING: float = 346.0
@@ -109,6 +111,7 @@ var other_stories_buttons: Array = []
 var button_press_pos: Vector2
 
 var _is_project_manager_open: bool = false
+var _is_mod_manager_open: bool = false
 
 var animation_cache = {
 	"original_position": Vector2.ZERO,
@@ -128,12 +131,13 @@ var animation_cache = {
 func _ready():
 	_setup_back_area()
 	_setup_editor_button()
+	_setup_manage_mods_button()
 	_init_background()
 	_load_mods()
 	_create_story_nodes()
 
 func _process(delta):
-	if not _is_list_active() or _is_project_manager_open:
+	if not _is_list_active() or _is_project_manager_open or _is_mod_manager_open:
 		is_dragging = false
 		drag_velocity = 0.0
 		return
@@ -147,7 +151,7 @@ func _process(delta):
 		_update_drag_physics()
 
 func _input(event):
-	if not _is_list_active() or _is_project_manager_open:
+	if not _is_list_active() or _is_project_manager_open or _is_mod_manager_open:
 		is_dragging = false
 		drag_velocity = 0.0
 		return
@@ -375,6 +379,10 @@ func _setup_editor_button():
 	if editor_button:
 		editor_button.pressed.connect(_on_editor_button_pressed)
 
+func _setup_manage_mods_button():
+	if manage_mods_button:
+		manage_mods_button.pressed.connect(_on_manage_mods_button_pressed)
+
 func _init_background():
 	if background_color:
 		background_color.modulate.a = 0.0
@@ -384,6 +392,15 @@ func _init_background():
 func _on_editor_button_pressed():
 	"""打开mod编辑器工程管理器"""
 	_open_project_manager()
+
+func _on_manage_mods_button_pressed():
+	"""打开模组管理器（查看信息 / 删除 / 导入ZIP）"""
+	if _is_mod_manager_open:
+		return
+	if is_animating or is_expanded:
+		push_error("请先退出当前同人故事详情页，再打开“管理模组”。")
+		return
+	_open_mod_manager()
 
 func _open_project_manager():
 	"""加载并显示工程管理器"""
@@ -407,12 +424,52 @@ func _open_project_manager():
 	_is_project_manager_open = true
 	is_dragging = false
 	drag_velocity = 0.0
-	project_manager.tree_exited.connect(func(): _is_project_manager_open = false)
+	project_manager.tree_exited.connect(func():
+		_is_project_manager_open = false
+		_reload_mods_and_story_nodes()
+	)
 	if project_manager is Control:
 		project_manager.z_index = 2000
 		project_manager.mouse_filter = Control.MOUSE_FILTER_STOP
 	get_parent().add_child(project_manager)
 	get_parent().move_child(project_manager, get_parent().get_child_count() - 1)
+
+func _open_mod_manager():
+	"""加载并显示模组管理器"""
+	var mod_manager_scene = load(MOD_MANAGER_SCENE_PATH)
+	if not mod_manager_scene:
+		push_error("无法加载模组管理器场景: " + MOD_MANAGER_SCENE_PATH)
+		return
+
+	var mod_manager = mod_manager_scene.instantiate()
+	_is_mod_manager_open = true
+	is_dragging = false
+	drag_velocity = 0.0
+
+	mod_manager.tree_exited.connect(func():
+		_is_mod_manager_open = false
+		_reload_mods_and_story_nodes()
+	)
+
+	if mod_manager is Control:
+		mod_manager.z_index = 2000
+		mod_manager.mouse_filter = Control.MOUSE_FILTER_STOP
+
+	get_parent().add_child(mod_manager)
+	get_parent().move_child(mod_manager, get_parent().get_child_count() - 1)
+
+func _reload_mods_and_story_nodes():
+	# 管理模组关闭后刷新同人列表
+	if is_animating or is_expanded:
+		return
+
+	for node in story_nodes:
+		if is_instance_valid(node):
+			node.queue_free()
+	story_nodes.clear()
+	loaded_mods.clear()
+	_load_mods()
+	_create_story_nodes()
 
 func _on_back_area_pressed():
 	if not (is_expanded and not is_animating and back_button_enabled):

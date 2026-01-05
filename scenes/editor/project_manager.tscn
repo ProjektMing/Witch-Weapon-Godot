@@ -133,95 +133,101 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 clip_contents = true
 
-[node name="DetailForm" type="VBoxContainer" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll"]
+[node name="DetailMargin" type="MarginContainer" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 24
+
+[node name="DetailForm" type="VBoxContainer" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailMargin"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="NameRow" type="HBoxContainer" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailForm"]
+[node name="NameRow" type="HBoxContainer" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailMargin/DetailForm"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="NameLabel" type="Label" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailForm/NameRow"]
+[node name="NameLabel" type="Label" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailMargin/DetailForm/NameRow"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 18
 text = "项目名称:"
 vertical_alignment = 1
 
-[node name="ProjectTitleInput" type="LineEdit" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailForm/NameRow"]
+[node name="ProjectTitleInput" type="LineEdit" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailMargin/DetailForm/NameRow"]
 layout_mode = 2
-size_flags_horizontal = 3
-custom_minimum_size = Vector2(0, 34)
+custom_minimum_size = Vector2(280, 34)
+size_flags_horizontal = 0
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 18
+max_length = 24
 placeholder_text = "未选择工程"
 
-[node name="ProjectPreview" type="TextureRect" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailForm/NameRow"]
+[node name="NameSpacer" type="Control" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailMargin/DetailForm/NameRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ProjectPreview" type="TextureRect" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailMargin/DetailForm/NameRow"]
 layout_mode = 2
 custom_minimum_size = Vector2(110, 95)
 mouse_filter = 0
 expand_mode = 1
 stretch_mode = 5
 
-[node name="DescLabel" type="Label" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailForm"]
+[node name="DescLabel" type="Label" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailMargin/DetailForm"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 18
 text = "项目描述:"
 
-[node name="ProjectDescInput" type="TextEdit" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailForm"]
+[node name="ProjectDescInput" type="TextEdit" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailMargin/DetailForm"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 90)
+custom_minimum_size = Vector2(0, 64)
 size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_vertical = 0
 
-[node name="EpisodesHeader" type="HBoxContainer" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailForm"]
+[node name="EpisodesHeader" type="HBoxContainer" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailMargin/DetailForm"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="EpisodesLabel" type="Label" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailForm/EpisodesHeader"]
+[node name="EpisodesLabel" type="Label" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailMargin/DetailForm/EpisodesHeader"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 18
 text = "剧情节:"
 vertical_alignment = 1
 
-[node name="AddEpisodeButton" type="Button" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailForm/EpisodesHeader"]
+[node name="AddEpisodeButton" type="Button" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailMargin/DetailForm/EpisodesHeader"]
 layout_mode = 2
 custom_minimum_size = Vector2(44, 34)
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 18
 text = "＋"
 
-[node name="DeleteEpisodeButton" type="Button" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailForm/EpisodesHeader"]
+[node name="EpisodeList" type="VBoxContainer" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailMargin/DetailForm"]
 layout_mode = 2
-custom_minimum_size = Vector2(44, 34)
-theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 18
-text = "－"
-
-[node name="EpisodeList" type="ItemList" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailForm"]
-layout_mode = 2
-custom_minimum_size = Vector2(0, 160)
+custom_minimum_size = Vector2(0, 140)
 size_flags_horizontal = 3
 size_flags_vertical = 3
-focus_mode = 0
+theme_override_constants/separation = 8
 
-[node name="ProjectActions" type="HBoxContainer" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailForm"]
+[node name="ProjectActions" type="HBoxContainer" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailMargin/DetailForm"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="ExportZipButton" type="Button" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailForm/ProjectActions"]
+[node name="ExportZipButton" type="Button" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailMargin/DetailForm/ProjectActions"]
 layout_mode = 2
 size_flags_horizontal = 3
 custom_minimum_size = Vector2(0, 38)
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 18
+disabled = true
+tooltip_text = "导出ZIP功能暂时禁用"
 text = "导出ZIP"
 
-[node name="InstallToModsButton" type="Button" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailForm/ProjectActions"]
+[node name="InstallToModsButton" type="Button" parent="WindowPanel/Margin/Content/Body/RightPanel/DetailScroll/DetailMargin/DetailForm/ProjectActions"]
 layout_mode = 2
 size_flags_horizontal = 3
 custom_minimum_size = Vector2(0, 38)
@@ -303,6 +309,7 @@ text = "工程名称："
 
 [node name="ProjectNameInput" type="LineEdit" parent="NewProjectDialog/DialogContent"]
 layout_mode = 2
+max_length = 24
 placeholder_text = "请输入工程名称"
 
 [node name="ErrorLabel" type="Label" parent="NewProjectDialog/DialogContent"]
@@ -335,6 +342,54 @@ size = Vector2i(460, 220)
 ok_button_text = "删除"
 cancel_button_text = "取消"
 text = "确定删除？"
+
+[node name="EpisodeRenameDialog" type="ConfirmationDialog" parent="."]
+title = "重命名剧情节"
+size = Vector2i(520, 220)
+ok_button_text = "确定"
+cancel_button_text = "取消"
+visible = false
+
+[node name="EpisodeRenameContent" type="VBoxContainer" parent="EpisodeRenameDialog"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_left = 18.0
+offset_top = 18.0
+offset_right = -18.0
+offset_bottom = -18.0
+theme_override_constants/separation = 10
+
+[node name="EpisodeRenameLabel" type="Label" parent="EpisodeRenameDialog/EpisodeRenameContent"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 18
+text = "新的剧情节名称："
+
+[node name="EpisodeRenameInput" type="LineEdit" parent="EpisodeRenameDialog/EpisodeRenameContent"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 18
+max_length = 24
+placeholder_text = "例如：第1节 / 序章"
+
+[node name="EpisodeRenameErrorLabel" type="Label" parent="EpisodeRenameDialog/EpisodeRenameContent"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(1, 0.35, 0.35, 0.95)
+text = ""
+
+[node name="EpisodeDeleteConfirmDialog" type="ConfirmationDialog" parent="."]
+title = "删除剧情节"
+size = Vector2i(520, 240)
+ok_button_text = "删除"
+cancel_button_text = "取消"
+text = "确定删除该剧情节？此操作不可撤销。"
+visible = false
 
 [node name="PreviewFileDialog" type="FileDialog" parent="."]
 title = "选择项目预览图"

@@ -1,0 +1,131 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2m7u5y3a7r2k"]
+
+[ext_resource type="Script" uid="uid://d4p6u2w8h9k1s" path="res://scripts/main/mod_manager.gd" id="1_script"]
+
+[node name="ModManager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+script = ExtResource("1_script")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+color = Color(0, 0, 0, 0.65)
+
+[node name="Window" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -520.0
+offset_top = -300.0
+offset_right = 520.0
+offset_bottom = 300.0
+mouse_filter = 0
+
+[node name="Margin" type="MarginContainer" parent="Window"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_left = 14.0
+offset_top = 14.0
+offset_right = -14.0
+offset_bottom = -14.0
+
+[node name="Root" type="VBoxContainer" parent="Window/Margin"]
+layout_mode = 2
+
+[node name="Header" type="HBoxContainer" parent="Window/Margin/Root"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="Window/Margin/Root/Header"]
+layout_mode = 2
+text = "模组管理"
+
+[node name="HeaderSpacer" type="Control" parent="Window/Margin/Root/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CloseButton" type="Button" parent="Window/Margin/Root/Header"]
+layout_mode = 2
+text = "关闭"
+
+[node name="Body" type="HBoxContainer" parent="Window/Margin/Root"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LeftColumn" type="VBoxContainer" parent="Window/Margin/Root/Body"]
+layout_mode = 2
+custom_minimum_size = Vector2(360, 0)
+size_flags_vertical = 3
+
+[node name="ModList" type="ItemList" parent="Window/Margin/Root/Body/LeftColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LeftButtons" type="HBoxContainer" parent="Window/Margin/Root/Body/LeftColumn"]
+layout_mode = 2
+
+[node name="ImportZipButton" type="Button" parent="Window/Margin/Root/Body/LeftColumn/LeftButtons"]
+layout_mode = 2
+text = "导入ZIP"
+
+[node name="RefreshButton" type="Button" parent="Window/Margin/Root/Body/LeftColumn/LeftButtons"]
+layout_mode = 2
+text = "刷新"
+
+[node name="DeleteButton" type="Button" parent="Window/Margin/Root/Body/LeftColumn/LeftButtons"]
+layout_mode = 2
+disabled = true
+text = "删除"
+
+[node name="Separator" type="VSeparator" parent="Window/Margin/Root/Body"]
+layout_mode = 2
+
+[node name="RightColumn" type="VBoxContainer" parent="Window/Margin/Root/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Icon" type="TextureRect" parent="Window/Margin/Root/Body/RightColumn"]
+layout_mode = 2
+custom_minimum_size = Vector2(160, 160)
+stretch_mode = 5
+
+[node name="ModTitleLabel" type="Label" parent="Window/Margin/Root/Body/RightColumn"]
+layout_mode = 2
+text = "未选择模组"
+
+[node name="ModInfoText" type="RichTextLabel" parent="Window/Margin/Root/Body/RightColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+fit_content = true
+scroll_active = true
+
+[node name="MessageDialog" type="AcceptDialog" parent="."]
+title = "提示"
+
+[node name="ConfirmDeleteDialog" type="ConfirmationDialog" parent="."]
+title = "确认删除"
+
+[node name="ImportZipDialog" type="FileDialog" parent="."]
+title = "选择要导入的 ZIP"
+file_mode = 1
+access = 2
+filters = PackedStringArray("*.zip ; ZIP 文件")
