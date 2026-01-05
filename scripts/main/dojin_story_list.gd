@@ -108,6 +108,8 @@ var other_stories_materials: Array = []
 var other_stories_buttons: Array = []
 var button_press_pos: Vector2
 
+var _is_project_manager_open: bool = false
+
 var animation_cache = {
 	"original_position": Vector2.ZERO,
 	"original_scale": Vector2.ONE,
@@ -131,6 +133,11 @@ func _ready():
 	_create_story_nodes()
 
 func _process(delta):
+	if not _is_list_active() or _is_project_manager_open:
+		is_dragging = false
+		drag_velocity = 0.0
+		return
+
 	if is_animating:
 		_update_animation(delta)
 		_update_other_stories_animation(delta)
@@ -140,6 +147,11 @@ func _process(delta):
 		_update_drag_physics()
 
 func _input(event):
+	if not _is_list_active() or _is_project_manager_open:
+		is_dragging = false
+		drag_velocity = 0.0
+		return
+
 	var main_menu = get_tree().get_first_node_in_group("main_menu")
 	if main_menu and main_menu.has_method("is_settings_open") and main_menu.is_settings_open():
 		is_dragging = false
@@ -151,6 +163,16 @@ func _input(event):
 		drag_velocity = 0.0
 		return
 	_handle_drag_input(event)
+
+func _is_list_active() -> bool:
+	if not visible or modulate.a < 0.5:
+		return false
+
+	var main_menu = get_tree().get_first_node_in_group("main_menu")
+	if main_menu and main_menu.get("_is_switching"):
+		return false
+
+	return true
 
 # ==================== Mod加载函数 ====================
 func _load_mods():
@@ -365,6 +387,9 @@ func _on_editor_button_pressed():
 
 func _open_project_manager():
 	"""加载并显示工程管理器"""
+	if _is_project_manager_open:
+		return
+
 	# 确保mod工程文件夹存在
 	var dir = DirAccess.open("user://")
 	if not dir.dir_exists("mod_projects"):
@@ -379,6 +404,10 @@ func _open_project_manager():
 
 	# 实例化并添加到场景树
 	var project_manager = project_manager_scene.instantiate()
+	_is_project_manager_open = true
+	is_dragging = false
+	drag_velocity = 0.0
+	project_manager.tree_exited.connect(func(): _is_project_manager_open = false)
 	if project_manager is Control:
 		project_manager.z_index = 2000
 		project_manager.mouse_filter = Control.MOUSE_FILTER_STOP

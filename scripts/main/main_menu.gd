@@ -79,6 +79,7 @@ func _ready() -> void:
 	_initialize_backgrounds()
 	_initialize_story_lists()
 	_initialize_black_overlay()
+	_setup_bgm_loop()
 	_ensure_dojin_hit_proxy()
 	_update_dojin_hit_proxy_rect()
 	_update_backgrounds_position()
@@ -112,6 +113,29 @@ func _initialize_black_overlay():
 		black_overlay.modulate.a = 0.0  # 初始完全透明
 		black_overlay.visible = false   # 初始不可见（编辑器中也不可见）
 		black_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE  # 不接收鼠标事件
+
+func _setup_bgm_loop() -> void:
+	if not bgm_player:
+		return
+
+	if not bgm_player.finished.is_connected(_on_bgm_player_finished):
+		bgm_player.finished.connect(_on_bgm_player_finished)
+
+	var stream := bgm_player.stream
+	if stream is AudioStreamOggVorbis or stream is AudioStreamMP3:
+		stream.loop = true
+	elif stream is AudioStreamWAV:
+		stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
+
+func _on_bgm_player_finished() -> void:
+	if not bgm_player:
+		return
+
+	# 剧情场景播放期间不自动重启主菜单BGM
+	if story_scene_layer and story_scene_layer.get_child_count() > 0:
+		return
+
+	bgm_player.play()
 
 func _process(_delta):
 	"""每帧更新，仅在非切换状态时更新背景视差效果"""

@@ -123,6 +123,11 @@ func _ready():
 
 ## 每帧更新函数 - 处理动画和物理效果
 func _process(delta):
+	if not _is_list_active():
+		is_dragging = false
+		drag_velocity = 0.0
+		return
+
 	# 如果正在播放动画，更新所有动画相关内容
 	if is_animating:
 		_update_animation(delta)              # 更新主动画
@@ -135,6 +140,11 @@ func _process(delta):
 
 ## 输入事件处理 - 管理用户的拖拽操作
 func _input(event):
+	if not _is_list_active():
+		is_dragging = false
+		drag_velocity = 0.0
+		return
+
 	# 检查设置界面是否打开
 	var main_menu = get_tree().get_first_node_in_group("main_menu")
 	if main_menu and main_menu.has_method("is_settings_open") and main_menu.is_settings_open():
@@ -148,6 +158,16 @@ func _input(event):
 		drag_velocity = 0.0
 		return
 	_handle_drag_input(event)  # 处理拖拽输入
+
+func _is_list_active() -> bool:
+	if not visible or modulate.a < 0.5:
+		return false
+
+	var main_menu = get_tree().get_first_node_in_group("main_menu")
+	if main_menu and main_menu.get("_is_switching"):
+		return false
+
+	return true
 
 # ==================== 初始化函数组 ====================
 ## 设置BackArea的点击事件 - 使用户可以点击返回
